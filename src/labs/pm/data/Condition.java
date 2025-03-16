@@ -7,30 +7,12 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/license/>.
  */
 
-package labs.pm.app;
-/*
-  {@code Shop} class represents an application that manages Products
-  @version 4.0
-  @author oracle
- */
-
-import labs.pm.data.Condition;
-import labs.pm.data.Product;
-
-import java.math.BigDecimal;
+package labs.pm.data;
 
 /**
- @author MihaiTrandafir
+ * @author MihaiTrandafir
  **/
 
-public class Shop {
-    public static void main(String[] args) {
-        Product p1 = new Product(101, "Coffee", BigDecimal.valueOf(1.99), Condition.WARM);
-        System.out.println(p1.serve());
-//        p1.setId(101);
-//        p1.setName("Tea");
-//        p1.setPrice(BigDecimal.valueOf(1.99));
-//        System.out.println(p1.getId() + " " + p1.getName() + " " + p1.getPrice() + " " + p1.getDiscount());
-
-    }
+public enum Condition {
+    COLD, WARM, HOT;
 }

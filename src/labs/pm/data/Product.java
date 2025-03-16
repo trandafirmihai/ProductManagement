@@ -33,6 +33,36 @@ public class Product {
     private String name;
     private BigDecimal price;
     public static final BigDecimal DISCOUNT_RATE=BigDecimal.valueOf(0.1);
+    private Condition condition;
+
+//    public Product() {
+//        this(0, "no name", BigDecimal.ZERO);
+//    }
+
+    public Product(int id, String name, BigDecimal price, Condition condition) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.condition = condition;
+    }
+
+    public String serve() {
+        String result = "";
+        switch(condition) {
+            case Condition.COLD:
+                result = "It is cold";
+                break;
+            case Condition.WARM:
+                result = "It is warm";
+                break;
+            case Condition.HOT:
+                result = "It is hot";
+                break;
+            default:
+                result = "None of above";
+        }
+        return result;
+    }
 
     public int getId() {
         return id;
