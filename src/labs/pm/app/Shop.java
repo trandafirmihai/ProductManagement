@@ -27,6 +27,8 @@ public class Shop {
     public static void main(String[] args) {
         Product p1 = new Product(101, "Coffee", BigDecimal.valueOf(1.99), Condition.WARM);
         System.out.println(p1.serve());
+        for (Condition c: Condition.values())
+            System.out.println(c.ordinal()+" "+c.name());
 //        p1.setId(101);
 //        p1.setName("Tea");
 //        p1.setPrice(BigDecimal.valueOf(1.99));
