@@ -47,18 +47,15 @@ public class Product {
     }
 
     public String serve() {
-        String result = "";
+        String result;
         switch(condition) {
-            case Condition.COLD:
+            case Condition.COLD ->
                 result = "It is cold";
-                break;
-            case Condition.WARM:
+            case Condition.WARM ->
                 result = "It is warm";
-                break;
-            case Condition.HOT:
+            case Condition.HOT ->
                 result = "It is hot";
-                break;
-            default:
+            default ->
                 result = "None of above";
         }
         return result;
