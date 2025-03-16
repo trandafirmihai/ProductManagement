@@ -48,12 +48,12 @@ public class Product {
 
     public String serve() {
         return switch(condition) {
-                case Condition.COLD ->
-                    "It is cold";
-                case Condition.WARM ->
-                    "It is warm";
-                case Condition.HOT ->
-                    "It is hot";
+            case Condition.COLD:
+                yield "It is cold";
+            case Condition.WARM:
+                yield "It is warm";
+            case Condition.HOT:
+                yield "It is hot";
             };
     }
 
