@@ -47,18 +47,14 @@ public class Product {
     }
 
     public String serve() {
-        String result;
-        switch(condition) {
-            case Condition.COLD ->
-                result = "It is cold";
-            case Condition.WARM ->
-                result = "It is warm";
-            case Condition.HOT ->
-                result = "It is hot";
-            default ->
-                result = "None of above";
-        }
-        return result;
+        return switch(condition) {
+                case Condition.COLD ->
+                    "It is cold";
+                case Condition.WARM ->
+                    "It is warm";
+                case Condition.HOT ->
+                    "It is hot";
+            };
     }
 
     public int getId() {
