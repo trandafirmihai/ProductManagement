@@ -22,6 +22,7 @@ package labs.pm.data;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 /**
 @author MihaiTrandafir
@@ -29,57 +30,50 @@ import java.math.RoundingMode;
 
 public class Product {
 
-    private int id;
-    private String name;
-    private BigDecimal price;
+    private final int id;
+    private final String name;
+    private final BigDecimal price;
     public static final BigDecimal DISCOUNT_RATE=BigDecimal.valueOf(0.1);
-    private Condition condition;
+    private final Rating rating;
 
-//    public Product() {
-//        this(0, "no name", BigDecimal.ZERO);
-//    }
-
-    public Product(int id, String name, BigDecimal price, Condition condition) {
+    public Product(int id, String name, BigDecimal price, Rating rating) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.condition = condition;
+        this.rating = rating;
     }
 
-    public String serve() {
-        return switch(condition) {
-            case Condition.COLD:
-                yield "It is cold";
-            case Condition.WARM:
-                yield "It is warm";
-            case Condition.HOT:
-                yield "It is hot";
-            };
+    public Product(int id, String name, BigDecimal price) {
+        this(id, name, price, Rating.NOT_RATED);
+    }
+
+    public Product() {
+        this(0,"no name",BigDecimal.ZERO);
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(final BigDecimal price) {
-        this.price = price;
-    }
+//    public void setPrice(final BigDecimal price) {
+//        this.price = price;
+//    }
 
     /*
       Calculate discount based on a product price and
@@ -89,5 +83,32 @@ public class Product {
      */
     public BigDecimal getDiscount() {
         return price.multiply(DISCOUNT_RATE).setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public Product applyRating(Rating newRating) {
+        return new Product(this.id, this.name, this.price, newRating);
+    }
+
+    @Override
+    public String toString() {
+        return id+", "+name+", "+price+", "+getDiscount()+", "+rating.getStars();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if (o instanceof Product product) {
+            return id == product.id && Objects.equals(name, product.name);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
