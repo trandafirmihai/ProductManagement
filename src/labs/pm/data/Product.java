@@ -28,7 +28,7 @@ import java.util.Objects;
 @author MihaiTrandafir
 **/
 
-public class Product {
+public abstract class Product {
 
     private final int id;
     private final String name;
@@ -89,9 +89,7 @@ public class Product {
         return rating;
     }
 
-    public Product applyRating(Rating newRating) {
-        return new Product(this.id, this.name, this.price, newRating);
-    }
+    public abstract Product applyRating(Rating newRating);
 
     @Override
     public String toString() {
