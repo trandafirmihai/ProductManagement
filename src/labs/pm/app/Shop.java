@@ -54,9 +54,10 @@ public class Shop {
         System.out.println("p6.equals(p7): "+p6.equals(p7));
         System.out.println(p8);
         System.out.println(p9);
-
-        if (p3 instanceof Food f) {
-            System.out.println(f.getName()+" is best before date: "+f.getBestBefore());
-        }
+//        if (p3 instanceof Food f) {
+//            System.out.println(f.getName()+" is best before date: "+f.getBestBefore());
+//        }
+        System.out.println(p3.getBestBefore());
+        System.out.println(p1.getBestBefore());
     }
 }

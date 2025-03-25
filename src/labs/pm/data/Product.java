@@ -22,6 +22,7 @@ package labs.pm.data;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -93,7 +94,7 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return id+", "+name+", "+price+", "+getDiscount()+", "+rating.getStars();
+        return id+", "+name+", "+price+", "+getDiscount()+", "+rating.getStars()+", "+getBestBefore();
     }
 
     @Override
@@ -108,5 +109,9 @@ public abstract class Product {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    public LocalDate getBestBefore() {
+        return LocalDate.now();
     }
 }

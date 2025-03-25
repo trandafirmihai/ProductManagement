@@ -30,11 +30,6 @@ public class Food extends Product {
     }
 
     @Override
-    public String toString() {
-        return super.toString()+", "+bestBefore;
-    }
-
-    @Override
     public BigDecimal getDiscount() {
         return (bestBefore.isEqual(LocalDate.now()/*.minusDays(1)*/)) ? super.getDiscount() : BigDecimal.ZERO;
     }
