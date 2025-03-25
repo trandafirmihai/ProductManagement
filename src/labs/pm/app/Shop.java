@@ -35,7 +35,8 @@ public class Shop {
         Product p5 = p3.applyRating(Rating.THREE_STAR);
         Product p6 = new Drink(104,"Chocolate",BigDecimal.valueOf(2.99), Rating.FIVE_STAR);
         Product p7 = new Food(104,"Chocolate",BigDecimal.valueOf(3.99), Rating.FIVE_STAR, LocalDate.now().plusDays(2));
-
+        Product p8 = p4.applyRating(Rating.FIVE_STAR);
+        Product p9 = p1.applyRating(Rating.ONE_STAR);
 
 //        System.out.println(p1.getId()+" "+p1.getName()+" "+p1.getPrice()+" "+p1.getDiscount()+" "+p1.getRating().getStars());
 //        System.out.println(p2.getId()+" "+p2.getName()+" "+p2.getPrice()+" "+p2.getDiscount()+" "+p2.getRating().getStars());
@@ -50,8 +51,8 @@ public class Shop {
         System.out.println(p5);
         System.out.println(p6);
         System.out.println(p7);
-        System.out.println(p6.equals(p7));
-
-        
+        System.out.println("p6.equals(p7): "+p6.equals(p7));
+        System.out.println(p8);
+        System.out.println(p9);
     }
 }
