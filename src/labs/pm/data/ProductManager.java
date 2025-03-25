@@ -16,26 +16,13 @@ import java.time.LocalDate;
  * @author MihaiTrandafir
  **/
 
-public class Food extends Product {
+public class ProductManager {
 
-    private LocalDate bestBefore;
-
-    public LocalDate getBestBefore() {
-        return bestBefore;
+    public Product createProduct(int id, String name, BigDecimal price, Rating rating, LocalDate bestBefore) {
+        return new Food(id, name, price, rating, bestBefore);
     }
 
-    Food(int id, String name, BigDecimal price, Rating rating, LocalDate bestBefore) {
-        super(id, name, price, rating);
-        this.bestBefore = bestBefore;
-    }
-
-    @Override
-    public BigDecimal getDiscount() {
-        return (bestBefore.isEqual(LocalDate.now()/*.minusDays(1)*/)) ? super.getDiscount() : BigDecimal.ZERO;
-    }
-
-    @Override
-    public Product applyRating(Rating newRating) {
-        return new Food(getId(), getName(), getPrice(), newRating, bestBefore);
+    public Product createProduct(int id, String name, BigDecimal price, Rating rating) {
+        return new Drink(id, name, price, rating);
     }
 }
