@@ -29,7 +29,7 @@ import java.util.Objects;
 @author MihaiTrandafir
 **/
 
-public abstract class Product {
+public abstract sealed class Product permits Drink, Food {
 
     private final int id;
     private final String name;
