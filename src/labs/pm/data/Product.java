@@ -114,4 +114,5 @@ public abstract sealed class Product permits Drink, Food {
     public LocalDate getBestBefore() {
         return LocalDate.now();
     }
+
 }
