@@ -29,7 +29,7 @@ import java.util.Objects;
 @author MihaiTrandafir
 **/
 
-public abstract sealed class Product permits Drink, Food {
+public abstract sealed class Product implements Rateable<Product> permits Drink, Food {
 
     private final int id;
     private final String name;
