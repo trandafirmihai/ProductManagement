@@ -19,6 +19,8 @@ import labs.pm.data.ProductManager;
 import labs.pm.data.Rating;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Locale;
 
 /**
  @author MihaiTrandafir
@@ -26,11 +28,16 @@ import java.math.BigDecimal;
 
 public class Shop {
     public static void main(String[] args) {
-        ProductManager pm = new ProductManager();
+        ProductManager pm = new ProductManager(Locale.UK);
         Product p1 = pm.createProduct(101,"Tea",BigDecimal.valueOf(1.99), Rating.NOT_RATED);
-        pm.printProductManager();
+        pm.printProductReport();
         p1 = pm.reviewProduct(p1, Rating.FOUR_STAR, "Nice hot cup of tea");
-        pm.printProductManager();
+        pm.printProductReport();
+
+        Product p2 = pm.createProduct(101,"Jugo",BigDecimal.valueOf(1.99), Rating.NOT_RATED, LocalDate.now());
+        pm.printProductReport();
+        p2 = pm.reviewProduct(p2, Rating.THREE_STAR, "Nice hot cup of juice");
+        pm.printProductReport();
 
 //        Product p2 = pm.createProduct(102,"Coffee",BigDecimal.valueOf(2.99), Rating.FOUR_STAR);
 //        Product p3 = pm.createProduct(103,"Cake",BigDecimal.valueOf(3.99), Rating.FIVE_STAR, LocalDate.now().plusDays(2));
