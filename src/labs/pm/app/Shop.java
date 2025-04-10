@@ -19,7 +19,6 @@ import labs.pm.data.Rating;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Locale;
 
 /**
  @author MihaiTrandafir
@@ -27,7 +26,7 @@ import java.util.Locale;
 
 public class Shop {
     public static void main(String[] args) {
-        ProductManager pm = new ProductManager(Locale.UK);
+        ProductManager pm = new ProductManager("en-GB");
         pm.createProduct(101,"Tea",BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         pm.printProductReport(101);
         pm.reviewProduct(101, Rating.FOUR_STAR, "Nice hot cup of tea");
@@ -37,6 +36,7 @@ public class Shop {
         pm.reviewProduct(101, Rating.FIVE_STAR, "Perfect tea");
         pm.reviewProduct(101, Rating.THREE_STAR, "Just add some lemon");
         pm.printProductReport(101);
+        pm.changeLocale("ru-RU");
         pm.createProduct(102,"Coffee",BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         pm.reviewProduct(102, Rating.THREE_STAR, "Coffee was ok");
         pm.reviewProduct(102, Rating.ONE_STAR, "Where is the milk?!");
@@ -47,6 +47,7 @@ public class Shop {
         pm.reviewProduct(103, Rating.FOUR_STAR, "Good, but I've expected more chocolate");
         pm.reviewProduct(103, Rating.FIVE_STAR, "This cake is perfect!");
         pm.printProductReport(103);
+        pm.changeLocale("fr-FR");
         pm.createProduct(104,"Cookie",BigDecimal.valueOf(2.99), Rating.NOT_RATED, LocalDate.now());
         pm.reviewProduct(104, Rating.THREE_STAR, "Just another cookie");
         pm.reviewProduct(104, Rating.THREE_STAR, "OK");
