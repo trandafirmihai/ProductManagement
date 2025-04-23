@@ -14,10 +14,10 @@ package labs.pm.app;
   @author oracle
  */
 
-import labs.pm.data.Product;
 import labs.pm.data.ProductManager;
+import labs.pm.data.Rating;
 
-import java.util.Comparator;
+import java.math.BigDecimal;
 
 /**
  @author MihaiTrandafir
@@ -26,35 +26,24 @@ import java.util.Comparator;
 public class Shop {
     public static void main(String[] args) {
         ProductManager pm = new ProductManager("en-GB");
-        pm.parseProduct("D,101,Tea,1.99,0,2023-04-21");
+
+        pm.createProduct(105, "Kombucha", BigDecimal.valueOf(1.99),
+                Rating.NOT_RATED);
+        pm.reviewProduct(105, Rating.TWO_STAR, "Looks like tea but is it?");
+        pm.reviewProduct(105, Rating.FOUR_STAR, "Fine tea");
+        pm.reviewProduct(105, Rating.FOUR_STAR, "This is not tea");
+        pm.reviewProduct(105, Rating.TWO_STAR, "Perfect!");
+        pm.printProductReport(105);
+
+//        pm.printProductReport(42);
         pm.printProductReport(101);
-        pm.parseReview("101,4,Nice hot cup of tea");
-        pm.parseReview("101,2,Rather weak tea");
-        pm.parseReview("101,4,Fine tea");
-        pm.parseReview("101,4,Good tea");
-        pm.parseReview("101,5,Perfect tea");
-        pm.parseReview("101,3,Just add some lemon");
-        pm.printProductReport(101);
-        pm.parseProduct("D,102,Coffee,1.99,0,2023-04-20");
-        pm.parseReview("102,3,Coffee was ok");
-        pm.parseReview("102,1,Where is the milk?!");
-        pm.parseReview("102,4,It's perfect with the tea spoon of sugar!");
         pm.printProductReport(102);
-        pm.parseProduct("F,103,Cake,3.99,0,2025-04-22");
-        pm.parseReview("103,5,Very nice cake");
-        pm.parseReview("103,4,Good, but I've expected more chocolate");
-        pm.parseReview("103,5,This cake is perfect!");
         pm.printProductReport(103);
-        pm.parseProduct("F,104,Cookie,2.99,0,2025-04-20");
-        pm.parseReview("104,3,Just another cookie");
-        pm.parseReview("104,3,OK");
         pm.printProductReport(104);
-        Comparator<Product> ratingSorter = (p1, p2) ->
-                p2.getRating().ordinal() - p1.getRating().ordinal();
-        Comparator<Product> priceSorter = (p1, p2) ->
-                p2.getPrice().compareTo(p1.getPrice());
-        pm.printProducts(p->p.getPrice().floatValue()<2, ratingSorter.thenComparing(priceSorter));
-        pm.getDiscounts().forEach(
-                (rating, discount) -> System.out.println((rating+"\t"+discount)));
+
+        pm.printProducts(
+                p -> p.getPrice().floatValue() < 2,
+                (p1,p2) -> p2.getRating().ordinal() - p1.getRating().ordinal());
+
     }
 }

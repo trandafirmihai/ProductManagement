@@ -1,0 +1,4 @@
+Coffee, Price: £1.99, Rating: ☆☆☆☆☆, Best Before: 20/04/2023, ○
+Review: ☆☆☆☆☆	3,Coffee was ok
+Review: ☆☆☆☆☆	1,Where is the milk?!
+Review: ☆☆☆☆☆	4,It's perfect with the tea spoon of sugar!
