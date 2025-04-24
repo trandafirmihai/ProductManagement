@@ -20,6 +20,7 @@ package labs.pm.data;
  * @author oracle
  */
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -29,7 +30,7 @@ import java.util.Objects;
 @author MihaiTrandafir
 **/
 
-public abstract sealed class Product implements Rateable<Product> permits Drink, Food {
+public abstract sealed class Product implements Rateable<Product>, Serializable permits Drink, Food {
 
     private final int id;
     private final String name;

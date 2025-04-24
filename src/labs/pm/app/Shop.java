@@ -33,13 +33,15 @@ public class Shop {
         pm.reviewProduct(105, Rating.FOUR_STAR, "Fine tea");
         pm.reviewProduct(105, Rating.FOUR_STAR, "This is not tea");
         pm.reviewProduct(105, Rating.TWO_STAR, "Perfect!");
+//        pm.dumpData(); // make the methods public for testing, but normally they should be private and be triggered from inside the ProductManager
+//        pm.restoreData(); // process is too fast, comment this line to see the tmp file
         pm.printProductReport(105);
 
 //        pm.printProductReport(42);
-        pm.printProductReport(101);
-        pm.printProductReport(102);
-        pm.printProductReport(103);
-        pm.printProductReport(104);
+//        pm.printProductReport(101);
+//        pm.printProductReport(102);
+//        pm.printProductReport(103);
+//        pm.printProductReport(104);
 
         pm.printProducts(
                 p -> p.getPrice().floatValue() < 2,
