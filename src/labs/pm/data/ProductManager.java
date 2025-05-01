@@ -62,25 +62,31 @@ public class ProductManager {
                     "fr-FR", new ResourceFormatter(Locale.FRANCE),
                     "zh-CN", new ResourceFormatter(Locale.CHINA));
 
-    private ResourceFormatter formatter;
+//    private ResourceFormatter formatter;
 
-    public void changeLocale(String languageTag) {
-        formatter = formatters.getOrDefault(languageTag,
+    private static final ProductManager pm = new ProductManager();
+
+    public ResourceFormatter changeLocale(String languageTag) {
+        return formatters.getOrDefault(languageTag,
                 formatters.get("en-GB"));
+    }
+
+    public static ProductManager getInstance() {
+        return pm;
     }
 
     public static Set<String> getSupportedLocales() {
         return formatters.keySet();
     }
 
-    public ProductManager(String languageTag) {
-        changeLocale(languageTag);
+    private ProductManager() {
+//        changeLocale(languageTag);
         loadAllData();
     }
 
-    public ProductManager(Locale locale) {
-        this(locale.toLanguageTag());
-    }
+//    public ProductManager(Locale locale) {
+//        this(locale.toLanguageTag());
+//    }
 
     public Product createProduct(int id, String name, BigDecimal price, Rating rating, LocalDate bestBefore) {
         Product product = new Food(id, name, price, rating, bestBefore);
@@ -129,9 +135,9 @@ public class ProductManager {
         return product;
     }
 
-    public void printProductReport(int id) {
+    public void printProductReport(int id, String languageTag) {
         try {
-            printProductReport(findProduct(id));
+            printProductReport(findProduct(id), languageTag);
         } catch (ProductManagementException e) {
             logger.log(Level.INFO, e.getMessage());
         } catch (IOException e) {
@@ -140,7 +146,8 @@ public class ProductManager {
         }
     }
 
-    public void printProductReport(Product product) throws IOException {
+    public void printProductReport(Product product, String languageTag) throws IOException {
+        ResourceFormatter formatter = changeLocale(languageTag);
         List<Review> reviews = new ArrayList<>(products.get(product));
         Collections.sort(reviews);
         Path productFile =
@@ -164,7 +171,8 @@ public class ProductManager {
         }
     }
 
-    public void printProducts(Predicate<Product> filter, Comparator<Product> sorter) {
+    public void printProducts(Predicate<Product> filter, Comparator<Product> sorter, String languageTag) {
+        ResourceFormatter formatter = changeLocale(languageTag);
         StringBuilder txt = new StringBuilder();
         products.keySet()
                         .stream()
@@ -303,7 +311,8 @@ public class ProductManager {
         return product;
     }
 
-    public Map<String, String> getDiscounts() {
+    public Map<String, String> getDiscounts(String languageTag) {
+        ResourceFormatter formatter = changeLocale(languageTag);
         return products.keySet()
                 .stream()
                 .collect(

@@ -15,9 +15,6 @@ package labs.pm.app;
  */
 
 import labs.pm.data.ProductManager;
-import labs.pm.data.Rating;
-
-import java.math.BigDecimal;
 
 /**
  @author MihaiTrandafir
@@ -25,27 +22,7 @@ import java.math.BigDecimal;
 
 public class Shop {
     public static void main(String[] args) {
-        ProductManager pm = new ProductManager("en-GB");
-
-        pm.createProduct(105, "Kombucha", BigDecimal.valueOf(1.99),
-                Rating.NOT_RATED);
-        pm.reviewProduct(105, Rating.TWO_STAR, "Looks like tea but is it?");
-        pm.reviewProduct(105, Rating.FOUR_STAR, "Fine tea");
-        pm.reviewProduct(105, Rating.FOUR_STAR, "This is not tea");
-        pm.reviewProduct(105, Rating.TWO_STAR, "Perfect!");
-//        pm.dumpData(); // make the methods public for testing, but normally they should be private and be triggered from inside the ProductManager
-//        pm.restoreData(); // process is too fast, comment this line to see the tmp file
-        pm.printProductReport(105);
-
-//        pm.printProductReport(42);
-//        pm.printProductReport(101);
-//        pm.printProductReport(102);
-//        pm.printProductReport(103);
-//        pm.printProductReport(104);
-
-        pm.printProducts(
-                p -> p.getPrice().floatValue() < 2,
-                (p1,p2) -> p2.getRating().ordinal() - p1.getRating().ordinal());
+        ProductManager pm = ProductManager.getInstance();
 
     }
 }
