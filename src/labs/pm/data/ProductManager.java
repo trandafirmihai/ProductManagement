@@ -102,10 +102,10 @@ public class ProductManager {
             writeLock.lock();
             product = new Food(id, name, price, rating, bestBefore);
             products.putIfAbsent(product, new ArrayList<>());
-            return null;
         } catch (Exception e) {
             logger.log(Level.INFO,
                     "Error adding product "+e.getMessage(), e);
+            return null;
         } finally {
             writeLock.unlock();
         }
@@ -118,10 +118,10 @@ public class ProductManager {
             writeLock.lock();
             product = new Drink(id, name, price, rating);
             products.putIfAbsent(product, new ArrayList<>());
-            return null;
         } catch (Exception e) {
             logger.log(Level.INFO,
                     "Error adding product "+e.getMessage(), e);
+            return null;
         } finally {
             writeLock.unlock();
         }
@@ -155,7 +155,7 @@ public class ProductManager {
     }
 
     private Product reviewProduct(Product product, Rating rating, String comments) {
-        List<Review> reviews = products.get(product);
+        List<Review> reviews = new ArrayList<>(products.get(product));
         products.remove(product);
         reviews.add(new Review(rating, comments));
         product = product.applyRating(
